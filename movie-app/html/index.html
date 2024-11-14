@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Movie App</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <script src="../script/script.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==Title==================================-->
+    <title>MHD - Full HD Movies</title>
+    <!--==Using-Font-Awesome======================-->
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <!--==CSS-Swiper==============================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"/>
+</head>
+<body>
+
+<div id="progress">
+    <span id="progress-value"></span>
+</div>
+
+<nav class="navigation">
+    <!--menu-btn--------------->
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon">
+        <span class="nav-icon"></span>
+    </label>
+    <!--logo------------------->
+    <a href="index.html" class="logo">
+        Movies<span>.hd</span>
+    </a>
+    <!--menu------------------->
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" id="tvShows">TV Shows</a></li>
+        <li><a href="#" id="movieShows">Movies</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <!--Search-box------------->
+    <form action="" class="search-box">
+        <!--input-->
+        <input type="text" name="search" placeholder="Search Movie" class="search-input" required/>
+        <!--btn-->
+        <button type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</nav>
+
+
+<section id="main-slider">
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+        </div>
+    </div>
+
+</section>
+
+<div class="slider-btns">
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+
+<section id="latest">
+    <!--heading-------->
+    <div class="latest-heading">
+        <h1>Latest Movies</h1>
+    </div>
+    <!--container------->
+    <div class="post-container">
+
+    </div>
+    <!--container-end--->
+    <!--page-number=====================-->
+
+</section>
+<!--latest-post-end------->
+<!--==footer==============================-->
+<footer>
+
+    <a href="index.html" class="logo">
+        Movies<span>hd</span>
+    </a>
+
+    <span class="copyright">
+            Copyright 2021 - GoingToInternet
+        </span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+<script src="../script/script.js"></script>
+
+
+<script>
+    /*==scroll-progress-bar======================*/
+    let scrollPrecentage = () =>{
+        let scrollProgress = document.getElementById("progress");
+        let progressValue = document.getElementById("progress-value");
+        let pos = document.documentElement.scrollTop;
+        let calcHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrollValue = Math.round(pos * 100 / calcHeight);
+        scrollProgress.style.background = `conic-gradient(#e70634 ${scrollValue}%, #2b2f38 ${scrollValue}%)`;
+    }
+    window.onscroll = scrollPrecentage;
+    window.onload = scrollPrecentage;
+    /*Initialize Swiper*/
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+            },
+        },
+    });
+    /*--menu-btn-fixed-when-scroll============*/
+
+</script>
+</body>
+</html>
