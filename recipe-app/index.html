@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Meal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="meal-container">
+    <div class="meal-content-wrapper">
+        <!-- Meal Search Section -->
+        <div class="meal-search-section">
+            <h2 class="meal-title">Find Meals</h2>
+            <blockquote>
+                True food doesn't rely on ingredients, it is the ingredients themselves.<br>
+            </blockquote>
+            <div class="meal-search-input-wrapper">
+                <input type="text" class="meal-search-control" placeholder="Enter an ingredient or dish name" id="search-input">
+                <button type="submit" class="meal-search-button btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Results Section -->
+        <div class="meal-search-results-section">
+            <h2 class="meal-title">Your Search Results:</h2>
+            <div id="meal"></div>
+        </div>
+
+        <!-- Meal Details Section (for viewing recipe) -->
+        <div class="meal-details-section">
+            <button type="button" class="btn meal-recipe-close-btn" id="recipe-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="meal-details-content"></div>
+        </div>
+
+        <!-- Favorite Meals Section -->
+        <div class="favorite-meals">
+            <h2 class="title">Favorite Meals:</h2>
+            <div id="favorites-list"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+

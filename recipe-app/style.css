@@ -1,0 +1,520 @@
+/* ---------------------------------------------------------------
+   Import Fonts and Base Styles
+--------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------
+   Define Color Variables
+--------------------------------------------------------------- */
+:root{
+    --teal: #00796b; /* Primary color */
+    --teal-dark: #004d40; /* Darker shade for hover effects */
+    --teal-light: #48a999; /* Lighter shade for hover effects */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.25);
+    --fade-duration: 0.5s;
+}
+
+/* ---------------------------------------------------------------
+   Body and Typography Styles
+--------------------------------------------------------------- */
+body{
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 2;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Button Base Styles */
+.btn {
+    cursor: pointer;
+    outline: 0;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* General Text Styling */
+.text {
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------------
+   Title and Container Styles
+--------------------------------------------------------------- */
+.meal-title
+{
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards 0.2s;
+}
+
+/* Ensures container takes full height of the viewport */
+.meal-container {
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards 0.3s;
+}
+
+/* Styles for search input and button */
+.meal-search-control,
+.meal-search-button {
+    width: 100%;
+}
+
+.meal-search-control {
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    font-family: inherit;
+    outline: 0;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.meal-search-control::placeholder {
+    color: var(--teal);
+}
+
+.meal-search-control:focus {
+    border-color: var(--teal-light);
+    box-shadow: 0 0 8px var(--teal-light);
+    animation: pulse 1.5s infinite;
+}
+
+.meal-search-button {
+    width: 55px;
+    height: 55px;
+    font-size: 1.8rem;
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    transition: all 0.4s linear;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    animation: slideIn 1s ease-out forwards;
+}
+
+.meal-search-button:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 12px var(--shadow-dark);
+}
+
+.meal-search-button:focus {
+    transform: scale(1.1);
+    animation: bounce 0.5s;
+}
+
+/* ---------------------------------------------------------------
+   Meal Result and Item Styling
+--------------------------------------------------------------- */
+.meal-content-wrapper {
+    margin: 0 auto;
+    padding: 2.05rem;
+    text-align: center;
+    max-width: 1280px;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 0.8s ease-out forwards 0.5s;
+}
+
+.meal-content-wrapper:hover {
+    box-shadow: 0 6px 18px var(--shadow-dark);
+}
+
+.meal-search-section {
+    margin: 2rem 0;
+}
+
+.meal-search-section cite {
+    font-size: 1.05rem;
+}
+
+/* Align search box contents and create flexible layout */
+.meal-search-input-wrapper {
+    margin: 1rem 0;
+    display: flex;
+    align-items: stretch;
+}
+
+.meal-search-results-section {
+    margin-top: 4.05rem;
+}
+
+#meal {
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards 0.7s;
+}
+
+.meal-item {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 3px 22px -13px rgba(0, 0, 0, 0.79);
+    margin: 1.95rem 0;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards 0.8s;
+}
+
+.meal-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px var(--shadow-dark);
+}
+
+/* Styles for images within meal items */
+.meal-img img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.meal-img:hover img {
+    transform: scale(1.05);
+}
+
+.meal-name {
+    padding: 1.6rem 0.4rem;
+}
+
+.meal-name h3 {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.meal-name:hover h3 {
+    color: var(--teal);
+}
+
+/* ---------------------------------------------------------------
+   Meal Details Styling - Corrected Positioning and Animation
+--------------------------------------------------------------- */
+
+.meal-details-section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    background: linear-gradient(to top left, rgba(0, 0, 0, .15), rgba(255, 255, 255, .15));
+    border-radius: 12px;
+    backdrop-filter: blur(100px);
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 1.95rem 0;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* JS class to display recipe with animation */
+.showRecipe {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    animation: fadeInScale 0.8s ease-out forwards;
+}
+
+/* Animation for the meal details popup */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Custom scrollbar for meal details popup */
+.meal-details-section::-webkit-scrollbar {
+    width: 10px;
+}
+
+.meal-details-section::-webkit-scrollbar-thumb {
+    background: #f0f0f0;
+    border-radius: 2rem;
+}
+
+.meal-details-content {
+    margin: 2rem;
+}
+
+.meal-details-content p:not(.recipe-category) {
+    padding: 1.05rem 0;
+}
+
+/* ---------------------------------------------------------------
+   Recipe Button Styling
+--------------------------------------------------------------- */
+.recipe-btn {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(to top left, rgba(63, 145, 100, .15), rgba(23, 46, 33, .1));
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.77rem 0;
+    display: block;
+    width: 180px;
+    margin: 1.05rem auto;
+    border-radius: 2.05rem;
+    transition: all 0.6s linear;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.recipe-btn:hover {
+    background: var(--teal-dark);
+    box-shadow: 0 6px 16px var(--shadow-dark);
+    animation: bounce 0.5s;
+}
+
+.meal-recipe-close-btn {
+    position: absolute;
+    right: 2.05rem;
+    top: 2.05rem;
+    font-size: 2rem;
+    background: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: background 0.3s ease;
+}
+
+.meal-recipe-close-btn:hover {
+    background: var(--teal-light);
+}
+
+/* Styling for the title and category of the recipe */
+.recipe-title {
+    letter-spacing: 1px;
+    padding-bottom: 1.05rem;
+}
+
+.recipe-category {
+    background: #fff;
+    font-weight: 600;
+    color: var(--teal);
+    display: inline-block;
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.recipe-category:hover {
+    color: var(--teal-dark);
+    box-shadow: 0 2px 8px var(--shadow-dark);
+}
+
+/* Additional styling for recipe instructions and images */
+.recipe-instruct {
+    padding: 1rem 0;
+}
+
+.recipe-meal-img img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.recipe-link {
+    margin: 1.5rem 0;
+}
+
+.recipe-link a {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.5s linear;
+}
+
+.recipe-link a:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ---------------------------------------------------------------
+   Not Found Styling
+--------------------------------------------------------------- */
+.notFound {
+    grid-template-columns: 1fr;
+    color: var(--teal);
+    font-size: 1.8rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+/* ---------------------------------------------------------------
+   Media Queries
+--------------------------------------------------------------- */
+@media screen and (min-width: 600px) {
+    .meal-search-input-wrapper {
+        width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    #meal {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.05rem;
+    }
+    .meal-item {
+        margin: 0;
+    }
+    .meal-details-section {
+        width: 700px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #meal {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ---------------------------------------------------------------
+   Keyframe Animations
+--------------------------------------------------------------- */
+
+/* Fade-in animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide-in animations */
+@keyframes slideIn {
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 8px var(--teal);
+    }
+    50% {
+        box-shadow: 0 0 12px var(--teal-light);
+    }
+    100% {
+        box-shadow: 0 0 8px var(--teal);
+    }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ---------------------------------------------------------------
+   Favorite Meals Section Styles
+--------------------------------------------------------------- */
+
+.favorite-meals {
+    margin-top: 3rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.favorite-meals h2 {
+    margin-bottom: 1rem;
+}
+
+.favorite-meals .meal-item {
+    margin: 1.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.favorite-meals .meal-item img {
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+    border-radius: 50%;
+}
+
+.favorite-meals .meal-item .meal-name {
+    flex-grow: 1;
+}
+
+.favorite-meals .meal-item .remove-favorite-btn {
+    background: #ff4747;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.favorite-meals .meal-item .remove-favorite-btn:hover {
+    background: #e63636;
+}
+
+.favorite-btn img{
+    width: 10px;
+    height: 10px;
+    border: none;
+
+}
+
